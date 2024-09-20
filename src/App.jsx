@@ -1,18 +1,22 @@
-import React from 'react';
-import Header from "./components/Header.jsx";
-import Products from "./components/Products.jsx";
-import Cart from "./components/Cart/Cart.jsx";
+import { useState } from "react";
+import Cart from "./components/Cart";
+import Header from "./components/Header";
+import Products from "./components/Products";
 
 function App() {
+    const [cart, setCart] = useState([]);
 
-  return (
+    const emptyCart = () => {
+        setCart([])
+    }
 
-      <div className="container mx-auto">
-          <Header></Header>
-          <Products></Products>
-          <Cart></Cart>
-      </div>
-  )
+    return (
+        <div className="container mx-auto p-4">
+            <Header cart={cart} />
+            <Products cart={cart} setCart={setCart} />
+            <Cart cart={cart} emptyCart={emptyCart} />
+        </div>
+    );
 }
 
-export default App
+export default App;
